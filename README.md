@@ -47,6 +47,13 @@ semeval2026-task13/
 ├── submission_task_c.csv
 └── README.md
 
+## Libraries
+torch – for training/evaluating the model
+transformers – CodeBERT + tokenizer
+pandas – reading parquet/CSV, dataframes
+scikit-learn – accuracy, macro-F1
+tqdm – progress bars
+pyarrow – to load .parquet files
 
 ## Training
 
