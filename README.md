@@ -124,7 +124,8 @@ Hyperparameters:
 - optimizer: AdamW
 - scheduler: linear warmup
 
-Ablation Study (Summary)
+
+Ablation Study
 To understand the contribution of each component in our CodeBERT-based authorship attribution system, we ran a controlled ablation study across all three SemEval Subtasks (A, B, C). Each experiment modifies one component at a time—encoder, input length, training strategy, or data balancing—while keeping everything else constant.
 
 1. Encoder Variants
