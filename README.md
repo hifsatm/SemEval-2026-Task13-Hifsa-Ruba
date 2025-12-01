@@ -124,5 +124,41 @@ Hyperparameters:
 - optimizer: AdamW
 - scheduler: linear warmup
 
+Ablation Study (Summary)
+To understand the contribution of each component in our CodeBERT-based authorship attribution system, we ran a controlled ablation study across all three SemEval Subtasks (A, B, C). Each experiment modifies one component at a time—encoder, input length, training strategy, or data balancing—while keeping everything else constant.
+
+1. Encoder Variants
+Change: CodeBERT → Distilled CodeBERTa-small
+Finding:
+- Minimal impact on Task A
+- Improves performance on multi-class Tasks B and C
+- Why: Smaller models generalize better under high class diversity.
+
+2. Input Length
+Change: 256 tokens → 128 tokens
+Finding:
+- Consistent performance drop, worst on Task C
+- Why: Hybrid/machine-generated snippets contain patterns beyond 128 tokens.
+
+3. Training Strategy
+Change: OneCycle LR → Constant LR
+Finding:
+- Lower accuracy and macro-F1 across all tasks
+- Why: OneCycle stabilizes early updates and improves convergence.
+
+4. Data Balancing
+Change: Balanced sampling → No class balancing
+Finding:
+- Task B breaks: model collapses to majority classes
+- Accuracy increases but macro-F1 collapses
+- Why: 11-class authorship is highly imbalanced and requires sampling.
+
+Key Takeaways
+- Encoder capacity affects generalization on multi-class problems.
+- Longer input sequences (256) are crucial for stylistic detection.
+- OneCycle LR provides more stable single-epoch fine-tuning.
+- Balanced sampling is essential, especially for Task B.
+
+This ablation validates the importance of CodeBERT’s full encoder, long input context, LR scheduling, and balanced sampling in building a robust authorship attribution system.
 
 
